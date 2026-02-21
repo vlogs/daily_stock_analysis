@@ -231,3 +231,10 @@ jobs:
           git add reports/*.md
           git commit -m "Auto-update report $(date +%Y-%m-%d)" || exit 0
           git push
+- name: 自动提交分析结果
+  run: |
+    git config --global user.name 'github-actions[bot]'
+    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    git add reports/ logs/
+    git commit -m "自动更新分析报告 $(date +'%Y-%m-%d')" || echo "没有变更需要提交"
+    git push
